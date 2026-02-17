@@ -2,10 +2,10 @@
 
 ## 使用
 ### 引入 JS 文件  
-  ```html
-  <script src="./BedrockSlimeFinder.js"></script>
-  <script src="./JavaSlimeFinder.js"></script>
-  ```
+```html
+<script src="./BedrockSlimeFinder.js"></script>
+<script src="./JavaSlimeFinder.js"></script>
+```
 
 ### 计算是否是史莱姆区块  
 ```javascript
@@ -30,3 +30,6 @@ JavaSlimeFinder.getSlimeRandomSeed(seed, x, z)
 // Java 版的种子是必须的，并且最好是字符串或 BigInt，否则计算会不精确
 ```
 这里的 `x` 和 `z` 同样是区块坐标
+
+### 在线演示
+[https://1503dev.github.io/minecraft-slime-finder/javascript/](https://1503dev.github.io/minecraft-slime-finder/javascript/)

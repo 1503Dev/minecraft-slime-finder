@@ -12,7 +12,7 @@
 - [X] [JavaScript](javascript)
 - [X] [Kotlin](kotlin)
 - [ ] Lua
-- [ ] php
+- [x] [PHP](php)
 - [ ] Python
 - [ ] Rust
 - [ ] 易语言

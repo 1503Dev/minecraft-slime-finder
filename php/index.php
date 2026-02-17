@@ -1,3 +1,38 @@
+<?
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once './BedrockSlimeFinder.php';
+    require_once './JavaSlimeFinder.php';
+
+    $edition = $_POST['edition'] ?? null;
+    $seed = $_POST['seed'] ?? null;
+    $x = $_POST['x'] ?? null;
+    $z = $_POST['z'] ?? null;
+
+    $x = (int)$x;
+    $z = (int)$z;
+
+    if ($edition == 'b') {
+        echo BedrockSlimeFinder::isSlimeChunk($x, $z) == 1 ? "true" : "false";
+        echo "\n";
+        echo BedrockSlimeFinder::getSlimeRandomSeed($x, $z);
+    } else {
+        if (!extension_loaded('gmp') && !extension_loaded('php_gmp') && !is_callable('gmp_init')) {
+            exit("false\nYou need to enable PHP gmp extension to continue");
+        }
+        if ($seed == '' || $seed == null) {
+            exit("false\nInvalid seed");
+        }
+        echo JavaSlimeFinder::isSlimeChunk($seed, $x, $z) == 1 ? "true" : "false";
+        echo "\n";
+        echo JavaSlimeFinder::getSlimeRandomSeed($seed, $x, $z);
+    }
+
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,8 +40,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minecraft Slime Finder</title>
-    <script src="./BedrockSlimeFinder.js"></script>
-    <script src="./JavaSlimeFinder.js"></script>
+    <script src="https://static.1503dev.top/ajax/jquery/3.7.1/jquery.min.js"></script>
     <style>
         .container {
             display: flex;
@@ -152,23 +186,16 @@
                 resultSpan.innerHTML = NO;
                 return;
             }
-
-            let isSlimeChunk
-            let slimeNumber = -1;
-
-            if (edition == 'b') {
-                isSlimeChunk = BedrockSlimeFinder.isSlimeChunk(chunkX, chunkZ);
-                slimeNumber = BedrockSlimeFinder.getSlimeRandomSeed(chunkX, chunkZ);
-            } else {
-                if (!seedValid) {
-                    resultSpan.innerHTML = NO;
-                    return;
-                }
-                isSlimeChunk = JavaSlimeFinder.isSlimeChunk(seed, chunkX, chunkZ);
-                slimeNumber = JavaSlimeFinder.getSlimeRandomSeed(seed, chunkX, chunkZ);
-            }
-
-            resultSpan.innerHTML = (isSlimeChunk ? YES : NO) + ": " + slimeNumber;
+            $.post('./index.php', {
+                edition: edition,
+                seed: seed,
+                x: chunkX,
+                z: chunkZ
+            }, (data)=>{
+                data = data.split('\n')
+                const isSlimeChunk = data[0] == "true" ? true : false
+                resultSpan.innerHTML = (isSlimeChunk ? YES : NO) + ': ' + data[1];
+            })
         }
 
         checkSlimeChunk();
