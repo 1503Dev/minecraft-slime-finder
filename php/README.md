@@ -1,4 +1,4 @@
-# Minecraft Slime Finder for JavaScript
+# Minecraft Slime Finder for PHP
 
 ## 使用
 ### 引入 PHP 文件  

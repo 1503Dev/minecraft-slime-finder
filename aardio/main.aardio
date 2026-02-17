@@ -1,0 +1,39 @@
+import win.ui;
+/*DSG{{*/
+mainForm = win.form(text="aardio";right=468;bottom=204)
+mainForm.add(
+chunkX={cls="edit";left=42;top=111;right=178;bottom=132;edge=1;num=1;z=6};
+chunkY={cls="edit";left=207;top=110;right=343;bottom=131;edge=1;num=1;z=8};
+edition={cls="combobox";left=41;top=63;right=178;bottom=83;edge=1;items={"基岩版","Java 版"};mode="dropdownlist";z=2};
+edition11={cls="static";text="版本";left=41;top=41;right=167;bottom=63;transparent=1;z=1};
+info={cls="static";left=41;top=139;right=239;bottom=165;transparent=1;z=11};
+is={cls="edit";left=374;top=109;right=422;bottom=130;edge=1;num=1;readonly=1;z=10};
+rez={cls="static";text="结果";left=374;top=89;right=437;bottom=107;transparent=1;z=9};
+seed={cls="edit";left=207;top=63;right=422;bottom=84;edge=1;num=1;z=4};
+static={cls="static";text="种子";left=207;top=43;right=392;bottom=61;transparent=1;z=3};
+static2={cls="static";text="区块X";left=42;top=91;right=105;bottom=109;transparent=1;z=5};
+static3={cls="static";text="区块Y";left=207;top=90;right=270;bottom=108;transparent=1;z=7};
+static4={cls="static";text="https://github.com/1503Dev/minecraft-slime-finder";left=43;top=179;right=421;bottom=207;transparent=1;z=12}
+)
+/*}}*/
+
+import console
+
+console.open()
+
+seed = mainForm.seed
+edition = mainForm.edition
+chunkX = mainForm.chunkX
+chunkY = mainForm.chunkY
+is = mainForm.is
+
+seed.oncommand = function(id,event){
+	if (event == 768) {
+		if(#(seed.text) > 19) {
+			seed.text = string.left(seed.text, 19, true)
+		}
+	}
+}
+
+mainForm.show();
+return win.loopMessage();

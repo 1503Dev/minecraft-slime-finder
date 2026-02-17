@@ -2,7 +2,7 @@
 我的世界史莱姆区块算法的不同编程语言实现(包括 Java 版和基岩版)
 
 ## 开始
-- [ ] aardio
+- [ ] ~~aardio~~
 - [ ] C
 - [ ] C++
 - [ ] C#
@@ -13,9 +13,9 @@
 - [X] [Kotlin](kotlin)
 - [ ] Lua
 - [x] [PHP](php)
-- [ ] Python
+- [x] [Python](python)
 - [ ] Rust
-- [ ] 易语言
+- [ ] ~~易语言~~
 
 ## 后记
 基岩版的算法来自 [depressed-pho/slime-finder-pe](https://github.com/depressed-pho/slime-finder-pe)  
